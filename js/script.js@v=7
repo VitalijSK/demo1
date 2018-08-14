@@ -1,0 +1,105 @@
+/**
+ * Created by kir on 19.08.17.
+ */
+$(document).ready(function() {
+
+    /* запускайем попапы */
+    $('.fancybox').fancybox({
+        fitToView	: false,
+        autoSize	: false,
+        closeClick	: false,
+        openEffect	: 'none',
+        closeEffect	: 'none'
+    });
+
+    var mainTop = document.getElementById("main_top");
+    if (mainTop != null) {
+        setTimeout(function(){
+            document.getElementById("main_top").style.display="block";
+        }, 500);
+    }
+
+    $('.burger').click(function () {
+        $('.mob-menu').fadeIn();
+    });
+
+    $('.mobile_close').on('click', function () {
+        $('.mob-menu').fadeOut();
+    });
+
+    $('.sidebar-mobile .list_box_first a.active').click(function () {
+        $('.sidebar-mobile .sub').slideToggle('fast', function () {
+            $('.sidebar-mobile').toggleClass('mob-open');
+        });
+        return false;
+    });
+
+    $('.bxslider').bxSlider({
+        mode: 'fade',
+        // adaptiveHeight: true,
+        auto: true,
+        controls: false,
+        pager: false
+    });
+
+
+    $('.gallery-slider').bxSlider({
+        moveSlides: 3
+    });
+
+    $('.slider1').bxSlider({
+        slideWidth: 250,
+        minSlides: 2,
+        maxSlides: 4,
+        slideMargin: 10,
+        pager: false
+    });
+
+
+
+    // $('.slider').bxSlider({
+    //     mode: 'fade',
+    //     // adaptiveHeight: true,
+    //     auto: true,
+    //     controls: false
+    // });
+
+    var slider = $('.slider');
+    var sld = function() {
+        if (slider.length > 0) {
+            if ($(window).width() < 660) {
+                slider.bxSlider({
+                    minSlides: 1,
+                    maxSlides: 1,
+                    // slideWidth: 186,
+                    // slideMargin: 10,
+                    pager: false,
+                    auto: true,
+                    controls: false
+                });
+            } else {
+                if (typeof(slider.destroySlider) !== 'undefined') {
+                    slider.destroySlider();
+                }
+            }
+        }
+    };
+    sld();
+    $(window).resize(sld);
+
+
+    // init browse form attr
+    $(".attach-title").on('click', function(e){
+        e.preventDefault();
+        $(".quick_price #callback-form-quick_price .row input[type='file']:hidden").trigger('click');
+        return false;
+    });
+
+    // load filename into lable form attr
+    $(".quick_price #callback-form-quick_price .row input[type='file']").change(function() {
+        var file = $(".quick_price #callback-form-quick_price .row input[type='file']")[0].files[0].name;
+        $('.field-objectform-files').find('label').text(file);
+    });
+});
+
+

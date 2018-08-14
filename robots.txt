@@ -1,0 +1,3 @@
+User-agent: *
+Host: svetoprozrachnye-konstrukcii.ru
+Sitemap: http://svetoprozrachnye-konstrukcii.ru/sitemap.xml
